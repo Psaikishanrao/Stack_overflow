@@ -1,0 +1,31 @@
+
+.skeleton-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .skeleton-title,
+  .skeleton-tags,
+  .skeleton-meta {
+    background-color: #eee;
+    height: 20px;
+    border-radius: 5px;
+  }
+  
+  .skeleton-title {
+    width: 70%;
+  }
+  
+  .skeleton-tags {
+    width: 50%;
+  }
+  
+  .skeleton-meta {
+    width: 30%;
+  }
+  

@@ -1,0 +1,141 @@
+/* .stack-index {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  width: 100vw; 
+  position: relative;
+}
+
+  
+.stack-index-content {
+  display: flex;
+  width: 100%; 
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left-sidebar {
+  flex: 1; 
+  min-width: 200px; 
+  background-color: #f9f9f9;
+  position: fixed;
+}
+
+.main {
+  flex: 3; 
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.right-sidebar {
+  flex: 1;
+  min-width: 200px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  position: fixed;
+}
+
+ 
+  @media (max-width: 1200px) {
+    .left-sidebar,
+    .right-sidebar {
+      width: 25%;
+    }
+  
+    .main {
+      width: 50%;
+    }
+  }
+  @media (max-width: 900px) {
+    .stack-index-content {
+        flex-direction: column; 
+        width: 100%; 
+    }
+
+    .left-sidebar,
+    .right-sidebar {
+        width: 100%; 
+        border: none; 
+    }
+
+    .main {
+        width: 100%;
+    }
+} */
+
+.stack-index {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative; 
+}
+
+.left-sidebar {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  width: 300px; 
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.right-sidebar {
+  position: fixed; 
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  width: 300px; 
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.main {
+  flex: 1;
+  margin-left: 200px; 
+  margin-right: 200px; 
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 100vh; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+@media (max-width: 1200px) {
+  .left-sidebar,
+  .right-sidebar {
+    width: 150px; 
+  }
+
+  .main {
+    margin-left: 150px; 
+    margin-right: 150px;
+  }
+}
+
+@media (max-width: 900px) {
+  .left-sidebar,
+  .right-sidebar {
+    position: relative; 
+    width: 100%; 
+    height: auto; 
+  }
+
+  .main {
+    margin-left: 0; 
+    margin-right: 0;
+  }
+}

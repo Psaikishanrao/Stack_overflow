@@ -1,0 +1,80 @@
+.left-sidebar {
+  width: 250px;
+  background-color: #f8f9fa;
+  position: relative;
+  padding: 20px;
+  
+  
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  left: 0;
+  width: 5px;
+  height: 40px; 
+  background-color: #ff8c00;
+  transition: transform 0.3s ease;
+}
+.MuiSvgIcon{
+  color: #ff8c00;
+}
+
+.sidebar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar-option:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar-option span {
+  font-size: 14px;
+}
+
+.sidebar-option svg {
+  color: #555;
+}
+
+.nested-links {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nested-links .link {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.nested-links .link:hover {
+  color: #ff8c00;
+}
+@media screen and (min-width: 768px) {
+  .header-menu {
+    display: none; /* Hide hamburger menu on larger screens */
+  }
+
+  .left-sidebar {
+    left: 0; /* Always visible on larger screens */
+    width: 250px;
+  }
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
+import Indexs from '../components/Indexs';
 
 const Home = () => {
   return (
-    <div className="container">
-      <Header />
+    <div className="container" style={{ padding: 0, margin: 0 }}>
+      <Indexs/>
     </div>
   );
 };
