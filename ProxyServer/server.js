@@ -19,7 +19,7 @@ app.use(limiter);
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://stack-overflow-5rb3eykbs-pragda-saikishan-raos-projects.vercel.app"], 
+    origin: ["http://localhost:5173", "https://stack-overflow-sooty-rho.vercel.app"], 
   })
 );
 
