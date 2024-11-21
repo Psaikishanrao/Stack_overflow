@@ -14,7 +14,7 @@ function Question({ question }) {
     const hoursElapsed = Math.floor(minutesElapsed / 60);
     if (hoursElapsed < 24) return `${hoursElapsed} hours ago`;
     const daysElapsed = Math.floor(hoursElapsed / 24);
-    return `${daysElapsed} days ago`;
+    return `asked ${daysElapsed} days ago`;
   };
 
   return (

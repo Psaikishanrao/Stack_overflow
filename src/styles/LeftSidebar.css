@@ -70,11 +70,44 @@
 }
 @media screen and (min-width: 768px) {
   .header-menu {
-    display: none; /* Hide hamburger menu on larger screens */
+    display: none; 
   }
 
   .left-sidebar {
-    left: 0; /* Always visible on larger screens */
+    left: 0; 
     width: 250px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .left-sidebar {
+    width: 60px; 
+    padding: 10px; 
+  }
+
+  .slider {
+    height: 20px; 
+  }
+
+  .sidebar-option {
+    font-size: 10px; 
+    padding: 5px 8px; 
+    gap: 2px; 
+  }
+
+  .sidebar-option svg {
+    font-size: 14px; 
+  }
+
+  .nested-links {
+    padding-left: 20px;
+    gap: 10px;
+  }
+
+  .nested-links .link {
+    font-size: 12px; 
+  }
+
+  .nested-links .link svg {
+    font-size: 12px; 
   }
 }

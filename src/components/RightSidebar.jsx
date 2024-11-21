@@ -50,7 +50,7 @@ function RightSidebar() {
 
       <div className="right-sidebar-section custom-filter">
         <h3>Custom Filter</h3>
-        <button>Add custom filters</button>
+       <input type="text" name="" id="" placeholder="Add custom filters" />
       </div>
     </div>
   );

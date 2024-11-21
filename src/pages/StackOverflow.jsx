@@ -1,12 +1,12 @@
 import React from 'react';
-import Indexs from '../components/Indexs';
+import Home from '../components/Home';
 
-const Home = () => {
+const StackOverflow = () => {
   return (
     <div className="container" style={{ padding: 0, margin: 0 }}>
-      <Indexs/>
+      <Home/>
     </div>
   );
 };
 
-export default Home;
+export default StackOverflow;

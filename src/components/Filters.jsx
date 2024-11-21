@@ -3,7 +3,6 @@ import "../styles/Filters.css";
 
 function Filters({ currentFilter, setFilter }) {
   const filters = [
-
     { label: "Creation", value: "creation" },
     { label: "Votes", value: "votes" },
     { label: "Activity", value: "activity" },
@@ -13,16 +12,30 @@ function Filters({ currentFilter, setFilter }) {
   ];
 
   return (
-    <div className="filters">
-      {filters.map((filter) => (
-        <button
-          key={filter.value}
-          className={`filter-btn ${currentFilter === filter.value ? "active" : ""}`}
-          onClick={() => setFilter(filter.value)}
+    <div>
+      <div className="filters">
+        {filters.map((filter) => (
+          <button
+            key={filter.value}
+            className={`filter-btn ${currentFilter === filter.value ? "active" : ""}`}
+            onClick={() => setFilter(filter.value)}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+      <div className="dropdown">
+        <select
+          value={currentFilter}
+          onChange={(e) => setFilter(e.target.value)}
         >
-          {filter.label}
-        </button>
-      ))}
+          {filters.map((filter) => (
+            <option key={filter.value} value={filter.value}>
+              {filter.label}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
