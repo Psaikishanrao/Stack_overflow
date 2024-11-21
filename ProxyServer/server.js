@@ -17,12 +17,12 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-
 app.use(
   cors({
-    origin: ["http://localhost:5173"], 
+    origin: ["http://localhost:5173", "https://stack-overflow-5rb3eykbs-pragda-saikishan-raos-projects.vercel.app"], 
   })
 );
+
 
 
 app.get("/api/questions", async (req, res) => {

@@ -21,6 +21,7 @@ function Main() {
       const response = await axios.get(
         `http://localhost:5000/api/questions?filter=${filter}&page=${page}&pagesize=10`
       );
+      // `https://stack-overflow-5rb3eykbs-pragda-saikishan-raos-projects.vercel.app/api/questions?filter=${filter}&page=${page}&pagesize=10`
       setQuestions(response.data.items);
     } catch (error) {
       console.error("Error fetching questions:", error);
