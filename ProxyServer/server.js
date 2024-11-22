@@ -1,5 +1,3 @@
-
-
 require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
@@ -15,11 +13,12 @@ const apiKey = process.env.STACK_EXCHANGE_API_KEY;
 
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
 });
 
 app.use(limiter);
+
 
 app.use(
   cors({
@@ -27,9 +26,8 @@ app.use(
   })
 );
 
-
-let lastRequestTime = 0;
-const REQUEST_DELAY = 5000;
+let lastRequestTime = 0; 
+const REQUEST_DELAY = 10 * 1000; 
 
 const delayRequest = async () => {
   const now = Date.now();
@@ -38,9 +36,8 @@ const delayRequest = async () => {
   if (timeSinceLastRequest < REQUEST_DELAY) {
     await new Promise((resolve) => setTimeout(resolve, REQUEST_DELAY - timeSinceLastRequest));
   }
-  lastRequestTime = Date.now();
+  lastRequestTime = Date.now(); 
 };
-
 
 const fetchWithRetry = async (apiUrl, retries = 3, delayBetweenRetries = 2000) => {
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -62,29 +59,23 @@ app.get("/api/questions", async (req, res) => {
   const { filter = "hot", page = 1, pagesize = 10, query } = req.query;
   const cacheKey = `${filter}-${page}-${pagesize}-${query || ""}`;
 
-
   if (cache.has(cacheKey)) {
-    return res.json(cache.get(cacheKey));
+    return res.json(cache.get(cacheKey)); 
   }
 
   try {
-
-    await delayRequest();
-
+    await delayRequest(); 
 
     const apiUrl = query
       ? `https://api.stackexchange.com/2.3/search/excerpts?q=${encodeURIComponent(query)}&order=desc&sort=relevance&site=stackoverflow&page=${page}&pagesize=${pagesize}&key=${apiKey}`
       : `https://api.stackexchange.com/2.3/questions?order=desc&sort=${filter}&site=stackoverflow&page=${page}&pagesize=${pagesize}&key=${apiKey}`;
 
+    const data = await fetchWithRetry(apiUrl); 
 
-    const data = await fetchWithRetry(apiUrl);
-
-
-    cache.set(cacheKey, data);
+    cache.set(cacheKey, data); 
     res.json(data);
   } catch (error) {
     console.error("Error after retries:", error.message);
-
 
     res.status(503).json({
       error: "Service temporarily unavailable due to high traffic. Please try again later.",
@@ -92,8 +83,6 @@ app.get("/api/questions", async (req, res) => {
   }
 });
 
-
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
