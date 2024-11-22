@@ -1,54 +1,46 @@
-
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../styles/Main.css";
+import React, { useContext, useEffect } from "react";
+import { QuestionContext } from "../context/QuestionContext";
 import Filters from "./Filters";
 import Question from "./Question";
 import SkeletonLoader from "./SkeletonLoader";
 
 function Main() {
-  const [questions, setQuestions] = useState([]);
-  const [page, setPage] = useState(1);
-  const [filter, setFilter] = useState("hot");
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const {
+    questions,
+    isLoading,
+    isError,
+    errorMessage,
+    filter,
+    setFilter,
+    page,
+    setPage,
+    isSearching,
+  } = useContext(QuestionContext);
 
-  const fetchQuestions = async () => {
-    setIsLoading(true);
-    setIsError(false);
-
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/questions?filter=${filter}&page=${page}&pagesize=10`
-      );
-      // `https://stack-overflow-5rb3eykbs-pragda-saikishan-raos-projects.vercel.app/api/questions?filter=${filter}&page=${page}&pagesize=10`
-      setQuestions(response.data.items);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-      setIsError(true);
-      setQuestions([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+//   useEffect(() => {
+//     console.log("Main rendering with questions:", questions);
+// }, [questions]);
   useEffect(() => {
-    fetchQuestions();
-  }, [filter, page]);
+    setPage(1);
+  }, [filter, isSearching]);
 
   return (
     <div className="main">
-      <h2>Top Questions</h2>
+      <h2>{isSearching ? "Search Results" : "Top Questions"}</h2>
 
-      <Filters currentFilter={filter} setFilter={setFilter} />
+      {!isSearching && (
+        <Filters currentFilter={filter} setFilter={setFilter} />
+      )}
 
       {isError && (
-        <p className="error">Failed to load questions. Please try again.</p>
+        <p className="error">
+          {errorMessage || "Failed to load questions. Please try again."}
+        </p>
       )}
 
       <div className="questions-container">
         {isLoading
-          ? Array.from({ length: 10 }, (_, index) => (
+          ? Array.from({ length: 10 }).map((_, index) => (
               <SkeletonLoader key={index} />
             ))
           : questions.map((question) => (
@@ -56,7 +48,7 @@ function Main() {
             ))}
       </div>
 
-      {!isError && (
+      {!isError && !isSearching && (
         <div className="pagination">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -67,7 +59,7 @@ function Main() {
           <span>Page {page}</span>
           <button
             onClick={() => setPage((prev) => prev + 1)}
-            disabled={questions.length === 0}
+            disabled={isLoading || questions.length === 0}
           >
             Next
           </button>

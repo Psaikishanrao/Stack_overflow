@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/Question.css";
 import { ThumbUp, QuestionAnswer, Visibility } from "@mui/icons-material";
 
-function Question({ question }) {
+
+  const Question = React.memo(({ question }) =>{
   const calculateTimeElapsed = (creationDate) => {
     const now = new Date();
     const createdAt = new Date(creationDate * 1000); 
@@ -16,7 +17,7 @@ function Question({ question }) {
     const daysElapsed = Math.floor(hoursElapsed / 24);
     return `asked ${daysElapsed} days ago`;
   };
-
+  // console.log("Rendering question:", question);
   return (
     <div className="question-card">
       <h3>
@@ -54,6 +55,6 @@ function Question({ question }) {
       </div>
     </div>
   );
-}
+});
 
 export default Question;
